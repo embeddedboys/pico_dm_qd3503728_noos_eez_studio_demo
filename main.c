@@ -41,6 +41,7 @@
 #include "porting/lv_port_indev_template.h"
 
 #include "backlight.h"
+#include "ui/ui.h"
 
 // bool lv_tick_timer_callback(struct repeating_timer *t)
 // {
@@ -79,7 +80,7 @@ int main(void)
     lv_port_indev_init();
 
     printf("Starting demo\n");
-    lv_demo_widgets();
+    // lv_demo_widgets();
     // lv_demo_stress();
     // lv_demo_music();
 
@@ -87,6 +88,7 @@ int main(void)
     // Before : Avg.146 256 114 186
     // After  : Avg.177 311 125 216
     // lv_demo_benchmark();
+    ui_init();
 
     /* This is a factory test app */
     // factory_test();
@@ -102,8 +104,8 @@ int main(void)
     printf("going to loop, %lld\n", time_us_64() / 1000);
     for (;;) {
         // tight_loop_contents();
-        // sleep_ms(200);
         lv_timer_handler_run_in_period(1);
+        ui_tick();
     }
 
     return 0;

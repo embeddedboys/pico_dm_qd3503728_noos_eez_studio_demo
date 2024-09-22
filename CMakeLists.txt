@@ -120,8 +120,13 @@ file(GLOB_RECURSE COMMON_SOURCES
     backlight.c
 )
 
+file(GLOB_RECURSE UI_SOURCES
+    ui/*.c
+    ui/*.cpp
+)
+
 # rest of your project
-add_executable(${PROJECT_NAME} ${COMMON_SOURCES})
+add_executable(${PROJECT_NAME} ${COMMON_SOURCES} ${UI_SOURCES})
 target_link_libraries(${PROJECT_NAME}
         pico_bootsel_via_double_reset
         pico_stdlib hardware_pwm
